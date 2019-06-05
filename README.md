@@ -230,9 +230,9 @@ ___
 
 ___
 
-[![PELA Sign](/sign/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl)
+[![PELA Vertical Sign](/sign/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl)
 
-[PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
+[PELA Vertical Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
 
 ___
 
