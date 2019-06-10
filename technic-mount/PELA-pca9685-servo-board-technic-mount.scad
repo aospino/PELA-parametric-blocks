@@ -227,9 +227,9 @@ module pca_9685_mount_and_cover(render_modules=_render_modules, material=_materi
             }
         }
 
-        color("orange") translate([block_width(-0.5), block_width(-w+4.5), block_width(cover_h-1)]) {
+        color("orange") translate([block_width(-0.5), block_width(-w+3.5), block_width(cover_h-1)]) {
         
-            cube([block_width(l+1), block_width(1), block_width(2)]);
+            cube([block_width(l+1), block_width(3), block_width(2)]);
             
             translate([block_width(4), block_width(-w), 0]) {
                 cube([block_width(1), block_width(w), block_width(2)]);
