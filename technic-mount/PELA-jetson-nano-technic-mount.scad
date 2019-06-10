@@ -62,7 +62,7 @@ _thickness = 20;
 /* [Enclosure] */
 
 // Height of the enclosure [blocks]
-_h = 3; // [1:1:20]
+_h = 4; // [1:1:20]
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -71,10 +71,10 @@ _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
-_twist_l = 1; // [1:18]
+_twist_l = 4; // [1:18]
 
 // 90 degree rotation from width ends [blocks]
-_twist_w = 2; // [1:18]
+_twist_w = 4; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 2;
@@ -104,7 +104,7 @@ _left_enclosure_cutout_depth = 24; // [0:0.1:200]
 _left_enclosure_cutout_z = 23; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_enclosure_cutout_height = 8; // [0:0.1:200]
+_left_enclosure_cutout_height = 24; // [0:0.1:200]
 
 
 
@@ -123,7 +123,7 @@ _right_enclosure_cutout_depth = 24; // [0:0.1:200]
 _right_enclosure_cutout_z = 16; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_enclosure_cutout_height = 10; // [0:0.1:200]
+_right_enclosure_cutout_height = 24; // [0:0.1:200]
 
 
 
@@ -139,7 +139,7 @@ _front_enclosure_cutout_width = 100; // [0:0.1:200]
 _front_enclosure_cutout_depth = 9; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 5; // [0:0.1:200]
+_front_enclosure_cutout_z = 13; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 32; // [0:0.1:200]
@@ -221,7 +221,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     heatsink_y = block_width(-2.5) - heatsink_cut_width;
 
     ribbon_cable_cut_length = block_width(2);
-    ribbon_cable_cut_width = block_width(7);
+    ribbon_cable_cut_width = block_width(8);
         
     ribbon_cable_x = block_width(w-0.5);
     ribbon_cable_y = block_width(-2.5) - ribbon_cable_cut_width;
