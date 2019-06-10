@@ -19,12 +19,12 @@ Import this into other design files:
     use <anker-usb-PELA-enclosure.scad>
 */
 
-include <../style.scad>
-include <../material.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
-use <../PELA-socket-panel.scad>
-use <../PELA-knob-panel.scad>
+include <style.scad>
+include <material.scad>
+use <PELA-block.scad>
+use <PELA-technic-block.scad>
+use <PELA-socket-panel.scad>
+use <PELA-knob-panel.scad>
 
 
 /* [Render] */
@@ -90,32 +90,8 @@ _sockets = true;
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
-// Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
-_side_sheaths = true;
-
 // Add short end holes spaced along the width for techic connectors
 _end_holes = 3;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
-
-// Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
-_end_sheaths = true;
-
-// Add holes in the top deck to improve airflow and reduce weight
-_top_vents = false;
-
-// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
-
-// There is usually no need or room for corner mounting M3 bolt holes
-_corner_bolt_holes = false;
-
-// Size of corner holes for M3 mountings bolts
-_bolt_hole_radius = 1.6; // [0.0:0.1:3.0]
-
-// Add interior fill for upper layers
-_solid_upper_layers = true;
-
-// Add interior fill for the base layer
-_solid_first_layer = false;
 
 
 
@@ -209,6 +185,33 @@ _back_enclosure_cutout_z = 4; // [0:0.1:200]
 // Height of the back side hole [mm]
 _back_enclosure_cutout_height = 8; // [0:0.1:200]
 
+
+/* [Advanced] */
+
+// Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
+_side_sheaths = true;
+
+// Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
+_end_sheaths = true;
+
+// Add holes in the top deck to improve airflow and reduce weight
+_top_vents = false;
+
+// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
+_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+
+// There is usually no need or room for corner mounting M3 bolt holes
+_corner_bolt_holes = false;
+
+// Size of corner holes for M3 mountings bolts
+_bolt_hole_radius = 1.6; // [0.0:0.1:3.0]
+
+// Add interior fill for upper layers
+_solid_upper_layers = true;
+
+// Add interior fill for the base layer
+_solid_first_layer = false;
+
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
 _skin = 0.1; // [0:0.02:0.5]
 
@@ -280,7 +283,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
 }
 
 
-module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
+module box_enclosure_positive_space(material, large_nozzle, cut_line, l, w, h, bottom_type, bottom_vents, sockets, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, skin, bottom_knobs, skip_edge_knobs, left_wall_enabled, right_wall_enabled, front_wall_enabled, back_wall_enabled, left_wall_knobs, right_wall_knobs, front_wall_knobs, back_wall_knobs, solid_first_layer, solid_upper_layers, center_type, block_height, knob_vent_radius, knob_height, corner_bolt_holes, bolt_hole_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -320,11 +323,11 @@ module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line
 
     enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, skin=skin, knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, solid_first_layer=solid_first_layer, block_height=block_height, knob_height=knob_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius);
 
-    box_center(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
+    box_center(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes, block_height=block_height, skin=skin);
 }
 
 
-module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef) {
+module walls(material, large_nozzle, l, w, h, bottom_type, bottom_vents, sockets, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, skin, left_wall_enabled, right_wall_enabled, front_wall_enabled, back_wall_enabled, left_wall_knobs, right_wall_knobs, front_wall_knobs, back_wall_knobs, solid_first_layer, solid_upper_layers, center_type, block_height, knob_vent_radius, knob_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -382,7 +385,7 @@ module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bott
 
 
 // Left side of the box with corner cuts
-module left_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
+module left_wall(material, large_nozzle, cut_line, l, w, h, sockets, top_vents, end_holes, end_sheaths, skin, front_wall_enabled, back_wall_enabled, solid_first_layer, solid_upper_layers, knobs, knob_height, block_height, knob_vent_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -423,7 +426,7 @@ module left_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=
 
 
 // A slice removed so that two wall fit together as a single whole
-module corner_cut(material=undef, large_nozzle=undef, angle=undef, h=undef, block_height=undef) {
+module corner_cut(material, large_nozzle, angle, h, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -440,7 +443,7 @@ module corner_cut(material=undef, large_nozzle=undef, angle=undef, h=undef, bloc
 
 
 // Mirror image of the left side
-module right_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
+module right_wall(material, large_nozzle, cut_line, l, w, h, sockets, top_vents, end_holes, end_sheaths, skin, front_wall_enabled, back_wall_enabled, solid_first_layer, solid_upper_layers, knobs, knob_height, block_height, knob_vent_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -471,7 +474,7 @@ module right_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
 
 
 // Front side of the box with corner cuts
-module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
+module front_wall(material, large_nozzle, cut_line, l, w, h, sockets, top_vents, side_holes, side_sheaths, skin, left_wall_enabled, right_wall_enabled, solid_first_layer, solid_upper_layers, knobs, knob_height, block_height, knob_vent_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -512,7 +515,7 @@ module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
 
 
 // Mirror image of the front wall
-module back_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
+module back_wall(material, large_nozzle, cut_line, l, w, h, sockets, top_vents, side_holes, side_sheaths, skin, left_wall_enabled, right_wall_enabled, solid_first_layer, solid_upper_layers, knobs, knob_height, block_height, knob_vent_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -543,7 +546,7 @@ module back_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=
 
 
 // Cutout for the box bottom
-module bottom_negative_space(material=undef, large_nozzle=undef, l=undef, w=undef, sockets=undef, bottom_type=undef, bottom_vents=undef, skin=undef, solid_first_layer=undef, block_height=undef) {
+module bottom_negative_space(material, large_nozzle, l, w, sockets, bottom_type, bottom_vents, skin, solid_first_layer, block_height) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -589,7 +592,7 @@ module edge_connector_negative_space(material=undef, large_nozzle=undef, l=undef
 
 
 // The optional bottom layer of the box
-module enclosure_bottom(material=undef, large_nozzle=undef, l=undef, w=undef, bottom_type=undef, sockets=undef, bottom_vents=undef, skin=undef, knobs=undef, skip_edge_knobs=undef, solid_first_layer=undef, block_height=undef, knob_height=undef, knob_vent_radius=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
+module enclosure_bottom(material, large_nozzle, l, w, bottom_type, sockets, bottom_vents, skin, knobs, skip_edge_knobs, solid_first_layer, block_height, knob_height, knob_vent_radius, corner_bolt_holes, bolt_hole_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -622,7 +625,7 @@ module enclosure_bottom(material=undef, large_nozzle=undef, l=undef, w=undef, bo
 
 
 // The middle "cheese" from which enclosure supports are cut
-module box_center(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, center_type=undef, side_holes=undef, end_holes=undef, block_height=undef) {
+module box_center(material, large_nozzle, l, w, h, center_type, side_holes, end_holes, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -633,6 +636,7 @@ module box_center(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
     assert(side_holes!=undef);
     assert(end_holes!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     if (center_type > 0 && l > 2 && w > 2) {
         l2 = block_width(l-2) + 2*skin;
@@ -645,7 +649,7 @@ module box_center(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
 }
 
 
-module wall_cutouts(l=undef, w=undef, left_enclosure_cutout_y=undef, left_enclosure_cutout_width=undef, left_enclosure_cutout_depth=undef, left_enclosure_cutout_z=undef, left_enclosure_cutout_height=undef, right_enclosure_cutout_y=undef, right_enclosure_cutout_width=undef, right_enclosure_cutout_depth=undef, right_enclosure_cutout_z=undef, right_enclosure_cutout_height=undef, front_enclosure_cutout_x=undef, front_enclosure_cutout_width=undef, front_enclosure_cutout_depth=undef, front_enclosure_cutout_z=undef, front_enclosure_cutout_height=undef, back_enclosure_cutout_x=undef, back_enclosure_cutout_width=undef, back_enclosure_cutout_depth=undef, back_enclosure_cutout_z=undef, back_enclosure_cutout_height=undef) {
+module wall_cutouts(l, w, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height) {
 
     assert(left_enclosure_cutout_y != undef);
     assert(left_enclosure_cutout_width != undef);
@@ -679,7 +683,7 @@ module wall_cutouts(l=undef, w=undef, left_enclosure_cutout_y=undef, left_enclos
 
 
 // Left side access hole
-module left_cutout(l=undef, left_enclosure_cutout_y=undef, left_enclosure_cutout_width=undef, left_enclosure_cutout_depth=undef, left_enclosure_cutout_z=undef, left_enclosure_cutout_height=undef) {
+module left_cutout(l, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height) {
     
     assert(l!=undef);
     assert(left_enclosure_cutout_y!=undef);
@@ -697,7 +701,7 @@ module left_cutout(l=undef, left_enclosure_cutout_y=undef, left_enclosure_cutout
 
 
 // Right side access hole
-module right_cutout(l=undef, right_enclosure_cutout_y=undef, right_enclosure_cutout_width=undef, right_enclosure_cutout_depth=undef, right_enclosure_cutout_z=undef, right_enclosure_cutout_height=undef) {
+module right_cutout(l, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height) {
 
     assert(l!=undef);
     assert(right_enclosure_cutout_y!=undef);
@@ -715,7 +719,7 @@ module right_cutout(l=undef, right_enclosure_cutout_y=undef, right_enclosure_cut
 
 
 // Front access hole
-module front_cutout(w=undef, front_enclosure_cutout_x=undef, front_enclosure_cutout_width=undef, front_enclosure_cutout_depth=undef, front_enclosure_cutout_z=undef, front_enclosure_cutout_height=undef) {
+module front_cutout(w, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height) {
 
     assert(w!=undef);
     assert(front_enclosure_cutout_width!=undef);
@@ -732,7 +736,7 @@ module front_cutout(w=undef, front_enclosure_cutout_x=undef, front_enclosure_cut
 
 
 // Back access hole
-module back_cutout(l=undef, w=undef, back_enclosure_cutout_x=undef, back_enclosure_cutout_width=undef, back_enclosure_cutout_depth=undef, back_enclosure_cutout_z=undef, back_enclosure_cutout_height=undef) {
+module back_cutout(l, w, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height) {
 
     assert(l!=undef);
     assert(w!=undef);

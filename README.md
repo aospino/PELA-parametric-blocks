@@ -128,6 +128,12 @@ ___
 
 ___
 
+[![PELA Technic Wheel](/axle/PELA-technic-wheel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-wheel.stl)
+
+[PELA Technic Wheel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-wheel.stl) A spoked wheel that connects to a cross axle hub. Consider using flexible materials and tuning the wheel hardness as a simple shock absorber.
+
+___
+
 [![PELA Socket Panel](/PELA-socket-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-socket-panel.stl)
 
 [PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexure ridges for enhanced "snap" fit.
@@ -248,21 +254,9 @@ ___
 
 ___
 
-[![PELA Box Enclosure](/knob-mount/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
+[![PELA Box Enclosure](/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-box-enclosure.stl)
 
-[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
-
-___
-
-[![PELA Intel Compute Stick Box Enclosure](/knob-mount/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl)
-
-[PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
-
-___
-
-[![PELA Grove Module](/PELA-grove-module-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-grove-module-enclosure.stl)
-
-[PELA Grove Module](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-grove-module-enclosure.stl) Attach a SEEED Grove module to your build such as a plug-in electronic sensors (ultrasound, touch..) with a 4 wire plug in connector. Snap your design together without soldering.
+[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
 
 ___
 
@@ -296,45 +290,10 @@ ___
 
 ___
 
-[![PELA Knob Mount](/knob-mount/PELA-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-knob-mount.stl)
-
-[PELA Knob Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding relatively flat objects like a microcontroller within a PELA block that has knobs on top
-
-___
-
-[![PELA Sparkfun Pro Micro Knob Mount](/knob-mount/PELA-sparkfun-pro-micro-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-sparkfun-pro-micro-knob-mount.stl)
-
-[PELA SparkFun Pro Micro Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-sparkfun-pro-micro-knob-mount.stl) For holding a small Aruino-compatible microcontroller board.
-
-___
-
-[![PELA PCA9685 16 Channel Servo Board Knob Mount](/knob-mount/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl)
-
-[PELA PCA9685 16 Channel Servo Bard Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end.
-
-___
-
 [![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/technic-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-board-technic-mount.stl)
 
 [PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
 
-___
-
-[![PELA NodeMCU-32s Knob Mount](/knob-mount/PELA-nodemcu-32s-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl)
-
-[PELA NodeMCU-32s Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
-
-___
-
-[![PELA NodeMCU v2 Knob Mount](/knob-mount/PELA-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl)
-
-[PELA NodeMCU v2 Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
-
-___
-
-[![PELA Arduino Mega Knob Mount](/knob-mount/PELA-arduino-mega-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-mega-knob-mount.stl)
-
-[PELA Arduino Mega Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
 
 ## FFF Printing Tips
 §

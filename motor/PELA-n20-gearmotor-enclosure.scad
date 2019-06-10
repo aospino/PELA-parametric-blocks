@@ -31,11 +31,7 @@ use <../PELA-technic-block.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-<<<<<<< HEAD:motor-enclosure/PELA-n20-gearmotor-enclosure.scad
 _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
-=======
-_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
->>>>>>> master:motor/PELA-n20-gearmotor-enclosure.scad
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
@@ -99,6 +95,9 @@ _knobs = true;
 // How tall are top connectors [mm]
 _knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
+_knob_vent_radius = 1.8; // [0.0:0.1:3.9]
+
 // Basic unit vertical size of each block
 _block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
@@ -122,9 +121,6 @@ _end_holes = 1; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 
 // Heat ventilation holes in the top surface
 _top_vents = true;
-
-// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-_knob_vent_radius = 1.8; // [0.0:0.1:3.9]
 
 
 
