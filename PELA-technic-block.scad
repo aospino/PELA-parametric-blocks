@@ -523,14 +523,16 @@ module axle_hole(material, large_nozzle, hole_type, radius, length) {
     assert(radius>=0);
     assert(length>=0);
 
-    rotation_hole(material=material, large_nozzle=large_nozzle, radius=radius, length=length);
+    render(convexity=4) {
+        rotation_hole(material=material, large_nozzle=large_nozzle, radius=radius, length=length);
 
-    if (hole_type>1) {
-        counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
+        if (hole_type>1) {
+            counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
 
-        translate([0, 0, length]) {
-            rotate([180, 0, 0]) {
-                counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
+            translate([0, 0, length]) {
+                rotate([180, 0, 0]) {
+                    counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
+                }
             }
         }
     }

@@ -211,6 +211,54 @@ jetson_nano_technic_mount(render_modules=_render_modules, material=_material, la
 
 module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin, cover_corner_tabs) {
 
+    assert(render_modules!=undef);
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(length!=undef);
+    assert(width!=undef);
+    assert(thickness!=undef);
+    assert(h!=undef);
+    assert(cover_h!=undef);
+    assert(l_pad!=undef);
+    assert(w_pad!=undef);
+    assert(twist_l!=undef);
+    assert(twist_w!=undef);
+    assert(knob_height!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(top_vents!=undef);
+    assert(innercut!=undef);
+    assert(undercut!=undef);
+    assert(center!=undef);
+    assert(cover_center!=undef);
+    assert(text!=undef);
+    assert(cover_text!=undef);
+    assert(text_depth!=undef);
+    assert(left_enclosure_cutout_y!=undef);
+    assert(left_enclosure_cutout_width!=undef);
+    assert(left_enclosure_cutout_depth!=undef);
+    assert(left_enclosure_cutout_z!=undef);
+    assert(left_enclosure_cutout_height!=undef);
+    assert(right_enclosure_cutout_y!=undef);
+    assert(right_enclosure_cutout_width!=undef);
+    assert(right_enclosure_cutout_depth!=undef);
+    assert(right_enclosure_cutout_z!=undef);
+    assert(right_enclosure_cutout_height!=undef);
+    assert(front_enclosure_cutout_x!=undef);
+    assert(front_enclosure_cutout_width!=undef);
+    assert(front_enclosure_cutout_depth!=undef);
+    assert(front_enclosure_cutout_z!=undef);
+    assert(front_enclosure_cutout_height!=undef);
+    assert(back_enclosure_cutout_x!=undef);
+    assert(back_enclosure_cutout_width!=undef);
+    assert(back_enclosure_cutout_depth!=undef);
+    assert(back_enclosure_cutout_z!=undef);
+    assert(back_enclosure_cutout_height!=undef);
+    assert(dome!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
+    assert(cover_corner_tabs!=undef);
+
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);    
         
@@ -220,11 +268,17 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     heatsink_x = block_width(2.5);
     heatsink_y = block_width(-2.5) - heatsink_cut_width;
 
-    ribbon_cable_cut_length = block_width(2);
+    ribbon_cable_cut_length = block_width(2) + _defeather;
     ribbon_cable_cut_width = block_width(8);
         
-    ribbon_cable_x = block_width(w-0.5);
+    ribbon_cable_x = block_width(w-0.5) - _defeather;
     ribbon_cable_y = block_width(-2.5) - ribbon_cable_cut_width;
+
+    antenna_cable_cut_length = block_width(1);
+    antenna_cable_cut_width = block_width(3);
+        
+    antenna_cable_x = block_width(0.5);
+    antenna_cable_y = block_width(2.5) - ribbon_cable_cut_width;
 
     video_x = 20;
     video_y = block_width(-1.5 - w);
@@ -236,28 +290,38 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
             technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=_cover_corner_tabs);
      
             if (render_modules > 0) {
-                translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness, 0]) {
-                    color("orange") cube([heatsink_cut_length + 2*edge_thickness, heatsink_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                if (heatsink_cut_length > 0 && heatsink_cut_width) {
+                    color("orange") translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness, 0]) {
+                        cube([heatsink_cut_length + 2*edge_thickness, heatsink_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                    }
                 }    
 
-                translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, -0]) {
-                    color("pink") cube([ribbon_cable_cut_length + 2*edge_thickness, ribbon_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                if (ribbon_cable_cut_length > 0 && ribbon_cable_cut_width) {
+                    color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, -0]) {
+                        cube([ribbon_cable_cut_length + 2*edge_thickness, ribbon_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                    }
+                }    
+                
+                if (antenna_cable_cut_length > 0 && antenna_cable_cut_width) {
+                    color("yellow") translate([antenna_cable_x - edge_thickness, antenna_cable_y - edge_thickness, -0]) {
+                        cube([antenna_cable_cut_length + 2*edge_thickness, antenna_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                    }
                 }    
             }        
         }
         
         union() {
-           color("blue") translate([video_x, video_y, -_defeather]) {
+            color("blue") translate([video_x, video_y, -_defeather])
                 cube([block_width(3), block_width(1), block_width(2)]);
-            }
 
-            color("orange") translate([heatsink_x, heatsink_y, -_defeather]) {
+            color("orange") translate([heatsink_x, heatsink_y, -_defeather])
                 cube([heatsink_cut_length, heatsink_cut_width, block_width(2)]);
-            }
 
-            color("pink") translate([ribbon_cable_x, ribbon_cable_y, -vertical_skin]) {
+            color("pink") translate([ribbon_cable_x, ribbon_cable_y, -vertical_skin])
                 cube([ribbon_cable_cut_length, ribbon_cable_cut_width, block_width(2)]);
-            }
+
+            color("yellow") translate([antenna_cable_x, antenna_cable_y, -vertical_skin])
+                cube([antenna_cable_cut_length, antenna_cable_cut_width, block_width(2)]);
         }
     }
 }

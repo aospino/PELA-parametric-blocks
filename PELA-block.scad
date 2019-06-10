@@ -546,10 +546,12 @@ module socket_ring(material, large_nozzle, length, bottom_tweak) {
     assert(length!=undef);
     assert(bottom_tweak!=undef);
 
-    rotate([0, 0, 180/_ring_fn]) {
-        r = override_ring_radius(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+    render(convexity=2) {
+        rotate([0, 0, 180/_ring_fn]) {
+            r = override_ring_radius(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
-        cylinder(r=r, h=length, $fn=_ring_fn);
+            cylinder(r=r, h=length, $fn=_ring_fn);
+        }
     }
 }
 
@@ -573,7 +575,9 @@ module socket_hole_set(material, large_nozzle, sockets, is_socket=true, l, w, ra
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(material=material, large_nozzle=large_nozzle, is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, socket_insert_bevel=socket_insert_bevel, ring_fn=ring_fn);
+                    render(convexity=2) {
+                        socket_hole(material=material, large_nozzle=large_nozzle, is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, socket_insert_bevel=socket_insert_bevel, ring_fn=ring_fn);
+                    }
                 }
             }
         }
