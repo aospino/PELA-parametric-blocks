@@ -48,9 +48,6 @@ _large_nozzle = true;
 // Length of the block [blocks]
 _l = 6; // [1:1:20]
 
-// Add interior fill for the base layer
-_solid_first_layer = false;
-
 // Distance between Vive connector pins
 _pin_spacing = 3.5;
 
@@ -110,13 +107,14 @@ _alignment_pin_d = 4.8;
 _alignment_pin_offset_from_screwhole = 13.9;
 _cut = 0.8;
 
+_skin = 0.1;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-PELA_vive_tracker_mount(material=_material, large_nozzle=_large_nozzle, block_height=_block_height, l=_l, w=_w);
+PELA_vive_tracker_mount(material=_material, large_nozzle=_large_nozzle, block_height=_block_height, l=_l, w=_w, skin=_skin);
 
 
 
@@ -127,17 +125,18 @@ PELA_vive_tracker_mount(material=_material, large_nozzle=_large_nozzle, block_he
 
 
 
-module PELA_vive_tracker_mount(material, large_nozzle, l, w, block_height) {
+module PELA_vive_tracker_mount(material, large_nozzle, l, w, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(l!=undef);
     assert(w!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     difference() {
         union() {
-            socket_panel(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, sockets=true, solid_first_layer=_solid_first_layer, block_height=block_height);
+            socket_panel(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, sockets=true, block_height=block_height, skin=skin);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector(material=material, l=l, w=w);
@@ -173,7 +172,7 @@ module PELA_vive_tracker_mount(material, large_nozzle, l, w, block_height) {
 
             thumbscrew_head_hole(material=material, large_nozzle=large_nozzle, block_height=block_height, l=l, w=w);
 
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=2, block_height=block_height, knob_height=_knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=2, block_height=block_height, knob_height=_knob_height, skin=skin);
         }
     }
 }

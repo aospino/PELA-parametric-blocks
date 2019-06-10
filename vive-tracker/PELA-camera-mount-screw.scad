@@ -95,7 +95,7 @@ module thumbscrew(material, large_nozzle, cut_line=_cut_line, thumbscrew_head_di
         }
 
         translate([-thumbscrew_head_diameter/2, -thumbscrew_head_diameter/2, 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, l=2, w=1, h=2, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=2, w=1, h=2, cut_line=cut_line, block_height=block_height, knob_height=knob_height, skin=0);
         }
     }
 }

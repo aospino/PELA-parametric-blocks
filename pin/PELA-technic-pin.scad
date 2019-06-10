@@ -127,7 +127,7 @@ module pin(material, large_nozzle, cut_line=_cut_line, axle_radius, pin_center_r
                         }
 
                         translate([-block_width(), -counterbore_holder_radius, 0]) {
-                            cut_space(material=material, large_nozzle=large_nozzle, l=1, w=1, cut_line=cut_line, h=4, block_height=_block_height, knob_height=_knob_height);
+                            cut_space(material=material, large_nozzle=large_nozzle, l=1, w=1, cut_line=cut_line, h=4, block_height=_block_height, knob_height=_knob_height, skin=0);
                         }
                     }
                 }
@@ -233,7 +233,7 @@ module rounded_slot(material, large_nozzle, thickness, slot_length) {
 
 
 // A set of half-pins connected by at the base
-module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness, minimum_base, base_thickness, block_height, counterbore_holder_radius, counterbore_holder_height) {
+module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness, minimum_base, base_thickness, block_height, counterbore_holder_radius, counterbore_holder_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -251,6 +251,7 @@ module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_
     assert(block_height!=undef);
     assert(counterbore_holder_radius!=undef);
     assert(counterbore_holder_height!=undef);
+    assert(skin!=undef);
 
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
     assert(length!=undef);
@@ -265,12 +266,12 @@ module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_
                         }
                     }
                     
-                    translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-_skin]) {
+                    translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-skin]) {
                         cube([block_width(array_count+1), block_width(2), block_height(1, block_height=block_height)]);
                     }
                 }
                 
-                pin_base(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, pin_slot_thickness=pin_slot_thickness);
+                pin_base(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, pin_slot_thickness=pin_slot_thickness, skin=skin);
             }
 
             if (minimum_base) {
@@ -282,13 +283,13 @@ module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=4, w=1, cut_line=cut_line, h=2, block_height=block_height, knob_height=_knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=4, w=1, cut_line=cut_line, h=2, block_height=block_height, knob_height=_knob_height, skin=skin);
     }
 }
 
 
 // The default connector between base pins
-module pin_base(material, large_nozzle, length, array_count, array_spacing, base_thickness, minimum_base, peg_length, pin_slot_thickness) {
+module pin_base(material, large_nozzle, length, array_count, array_spacing, base_thickness, minimum_base, peg_length, pin_slot_thickness, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -299,8 +300,9 @@ module pin_base(material, large_nozzle, length, array_count, array_spacing, base
     assert(minimum_base!=undef);
     assert(peg_length!=undef);
     assert(pin_slot_thickness!=undef);
+    assert(skin!=undef);
     
-    translate([-block_width(1/2), -block_width(1/2), -base_thickness-_skin]) {
+    translate([-block_width(1/2), -block_width(1/2), -base_thickness-skin]) {
         difference() {
             cube([array_count*array_spacing, block_width(1), base_thickness]);
         
@@ -317,8 +319,8 @@ module pin_envelope(material, large_nozzle, length, counterbore_holder_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(length!=undef);
-    assert(counterbore_holder_radius!=undef);
+    assert(length>=0);
+    assert(counterbore_holder_radius>=0);
 
     cylinder(r=counterbore_holder_radius, h=length);
 }
