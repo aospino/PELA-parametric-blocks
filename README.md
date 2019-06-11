@@ -290,7 +290,7 @@ ___
 
 ___
 
-[![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/technic-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-board-technic-mount.stl)
+[![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl)
 
 [PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
 
