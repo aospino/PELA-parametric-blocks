@@ -82,7 +82,7 @@ _undercut = 3.0; // [0:0.1:100]
 _center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
 
 // Text label
-_text = "9685";
+_text = "PCA9685";
 
 
 
@@ -165,7 +165,7 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-_cover_text = "9685";
+_cover_text = "96     85";
 
 // Interior fill style
 _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
@@ -218,17 +218,16 @@ module pca_9685_mount_and_cover(render_modules=_render_modules, material=_materi
             technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, knob_vent_radius=knob_vent_radius, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, knob_height=knob_height, top_vents=top_vents, cover_corner_tabs=cover_corner_tabs);
         }
 
-        color("orange") translate([block_width(-0.5), block_width(-w+3.5), block_width(cover_h-2)]) {
+        color("orange") translate([block_width(-0.5), block_width(-w+4), block_width(cover_h-2)]) {
         
             cube([block_width(l+1), block_width(2), block_width(3)]);
             
-            translate([block_width(4), block_width(-w), 0]) {
-                cube([block_width(1), block_width(w), block_width(3)]);
-            }
-            
-            translate([block_width(6), block_width(-w), 0]) {
+            translate([block_width(4), block_width(-w/2), 0]) {
                 cube([block_width(1), block_width(w), block_width(3)]);
             }
         }    
+
+        color("black") translate([block_width(1), block_width(-w+3), panel_height(block_width())])
+            cube([block_width(l-3), block_width(0.5), block_width(3)]);
     }
 }
