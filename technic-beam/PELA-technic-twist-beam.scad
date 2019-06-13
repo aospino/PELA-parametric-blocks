@@ -38,19 +38,35 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
+
 /* [Technic Twist Beam] */
 
+// Beam width, left end [blocks]
+_w_left = 2; // [1:1:30]
+
+// Beam width, center [blocks]
+_w_center = 2; // [1:1:30]
+
+// Beam width, right end [blocks]
+_w_right = 2; // [1:1:30]
+
 // Left side length of upward facing connectors [blocks]
-_left = 2; // [1:20]
+_l_left = 2; // [1:20]
 
 // Center length of sideways facing connectors [blocks]
-_center = 4; // [0:20]
+_l_center = 4; // [0:20]
 
 // Right side length of upward facing connectors [blocks]
-_right = 2; // [1:20]
+_l_right = 2; // [1:20]
 
-// Model height [blocks]
-_h = 1; // [1:1:30]
+// Beam height, left end [blocks]
+_h_left = 2; // [0:1:30]
+
+// Beam height, center [blocks]
+_h_center = 2; // [1:1:30]
+
+// Beam height, right end [blocks]
+_h_right = 2; // [0:1:30]
 
 
 /* [Advanced] */
@@ -70,7 +86,7 @@ _vertical_skin = 0.1; // [0:0.02:0.5]
 // DISPLAY
 ///////////////////////////////
 
-technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, left=_left, center=_center, right=_right, h=_h, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
+technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, w_left=_w_left, w_center=_w_center, w_right=_w_right, l_left=_l_left, l_center=_l_center, l_right=_l_right, h_left=_h_left, h_center=_h_center, h_right=_h_right, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -78,55 +94,94 @@ technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_beam(material, large_nozzle, cut_line=_cut_line, left, center, right, h, side_holes, horizontal_skin, vertical_skin) {
+module technic_twist_beam(material, large_nozzle, cut_line=_cut_line, w_left, w_center, w_right, l_left, l_center, l_right, h_left, h_center, h_right, side_holes, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
-    assert(left > 0, "Left side of twist beam must be at least 1");
-    assert(center >= 0, "Center of twist beam must be at least 0");
-    assert(right > 0, "Right side of twist beam must be at least 1");
-    assert(h!=undef);
+    assert(w_left>0);
+    assert(w_center>0);
+    assert(w_right>0);
+    assert(l_left>=0);
+    assert(l_center>=0);
+    assert(l_right>0);
+    assert(h_left>=0);
+    assert(h_center>0);
+    assert(h_right>=0);
     assert(side_holes!=undef);
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
 
-    w=1;
-
-    if (center == 0) {
-        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right, side_holes=side_holes, w=w, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+    if (l_center == 0) {
+        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l_left+l_right, side_holes=side_holes, w=w_left, h=h_left, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     } else {
         difference() {
             union() {
-                translate([0, 0, block_height(h-1, _block_height)-2*vertical_skin]) {
-                    left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=left, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                if (h_left>0) {
+                    translate([0, 0, block_height(h_left-1, _block_height)-2*vertical_skin]) {
+                        left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l_left, w=w_left, h=h_left, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                    }
                 }
 
-                translate([block_width(left), 0, 0]) {
-//                    intersection() {
-//                        translate([block_width(-0.5)+horizontal_skin, block_width(-0.5)+horizontal_skin, 0]) {
-//                            cube([block_width(center), block_width(w)-2*horizontal_skin, block_height(h, _block_height)-2*vertical_skin]);
-//                        }
+                translate([block_width(l_left), 0, 0]) {
+                    intersection() {
+                        translate([block_width(-0.5), block_width(-0.5)+horizontal_skin, 0]) {
+                            center_section_rounding(h_left=h_left, h_right=h_right, l_center=l_center, w_center=w_center, h_center=h_center, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                        }
                         
-                        for (i=[0:1:h-1]) {
-                            translate([0, block_width(0.5)-horizontal_skin, block_width(0.5+i)-vertical_skin]) {
+                        for (i=[0:1:h_center-1]) {
+                            translate([0, block_width(-0.5+w_center)-horizontal_skin, block_width(0.5+i)-vertical_skin]) {
                                 rotate([90, 0, 0]) {
-                                    square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=center, w=w, h=1, side_holes=side_holes, horizontal_skin=vertical_skin, vertical_skin=horizontal_skin);
+                                    square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l_center, w=1, h=w_center, side_holes=side_holes, horizontal_skin=0, vertical_skin=horizontal_skin);
                                 }
                             }
-//                        }
+                        }
                     }
 
-                    translate([block_width(center), 0, 0]) {
-                        right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=right, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                    if (h_right>0) {
+                        translate([block_width(l_center), 0, 0]) {
+                            right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l_right, w=w_right, h=h_right, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                        }
                     }
                 }
             }
 
             translate([block_width(-0.5), block_width(-0.5), 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, w=left+center+right, l=left+center+right, cut_line=cut_line, h=1, block_height=_block_height, knob_height=0, skin=horizontal_skin);
+                h_max=max(h_left, max(h_center, h_right));
+
+                cut_space(material=material, large_nozzle=large_nozzle, w=l_left+l_center+l_right, l=l_left+l_center+l_right, cut_line=cut_line, h=h_max, block_height=_block_height, knob_height=0, skin=horizontal_skin);
             }
         }
+    }
+}
+
+
+module center_section_rounding(h_left, h_right, l_center, w_center, h_center, horizontal_skin, vertical_skin) {
+    
+    assert(h_left!=undef);
+    assert(h_right!=undef);
+    assert(l_center!=undef);
+    assert(w_center!=undef);
+    assert(h_center!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
+
+    left_h = (h_left<h_center) ? 0.1 : block_width(h_center)-2*vertical_skin; 
+    right_h = (h_right<h_center) ? 0.1 : block_width(h_center)-2*vertical_skin; 
+    
+    hull() {
+        cube([_defeather, block_width(w_center)-2*horizontal_skin, left_h]);    
+        
+        translate([block_width(l_center)-_defeather, 0, 0])
+            cube([_defeather, block_width(w_center)-2*  horizontal_skin, right_h]);
+        
+        translate([block_width(0.5)-2*vertical_skin, 0, block_width(h_center-0.5)])
+            rotate([-90, 0, 0])
+                cylinder(r=block_width(0.5)-2*vertical_skin, h=block_width(w_center));
+        
+        translate([block_width(l_center-0.5)+2*vertical_skin, 0, block_width(h_center-0.5)])
+            rotate([-90, 0, 0])
+                cylinder(r=block_width(0.5)-2*vertical_skin, h=block_width(w_center));
     }
 }
 

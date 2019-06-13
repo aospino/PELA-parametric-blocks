@@ -261,6 +261,8 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);    
+
+    edge_thickness = 1.4;
         
     heatsink_cut_length = block_width(9);
     heatsink_cut_width = block_width(6);
@@ -282,8 +284,6 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
     video_x = 20;
     video_y = block_width(-1.5 - w);
-
-    edge_thickness = 1.4;
 
     difference() {
         union() {

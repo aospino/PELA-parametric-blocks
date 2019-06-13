@@ -288,7 +288,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
             technic_beam(material=material, large_nozzle=large_nozzle, l=side_length, w=1, h=2);
             
             translate([0, 0, block_height(2, block_height=block_height)]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=2, right=2, center=side_length-4);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, w_left=1, w_center=1, w_right=1, l_left=2, l_right=2, l_center=side_length-4, h_left=1, h_center=1, h_right=1);
                 }
         }
         
@@ -305,7 +305,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
                         technic_beam(material=material, large_nozzle=large_nozzle, l=side_length, w=1, h=1);
 
                     translate([0, 0, block_height(1)]) {
-                        technic_twist_beam(material=material, large_nozzle=large_nozzle, left=2, right=2, center=side_length-4);
+                        technic_twist_beam(material=material, large_nozzle=large_nozzle, w=1, left=2, right=2, center=side_length-4);
                     }
                     }
                 }
@@ -315,7 +315,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
                         // Side 3
                         color("blue") {
                             translate([0, 0, block_height(2)]) {
-                                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=2, center=side_length-4, right=2);
+                                technic_twist_beam(material=material, large_nozzle=large_nozzle, w=1, left=2, center=side_length-4, right=2, h_left=1, h_center=1, h_right=1);
                             }
                         }
                         
@@ -328,7 +328,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
                                         technic_beam(material=material, large_nozzle=large_nozzle, l=side_length, w=1, h=1);
 
                                     translate([0, 0, block_height()]) {
-                                        technic_twist_beam(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                        technic_twist_beam(material=material, large_nozzle=large_nozzle, w=1, center=side_length-4, left=2, right=2, h_left=1, h_center=1, h_right=1);
                                     }
                                     }
                                 }
@@ -340,7 +340,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
                                             technic_beam(material=material, large_nozzle=large_nozzle, l=side_length, w=1, h=2);
                                             
                                             translate([0, 0, block_height(2)]) {
-                                                technic_twist_beam(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                                technic_twist_beam(material=material, large_nozzle=large_nozzle, w=1, center=side_length-4, left=2, right=2, h_left=1, h_center=1, h_right=1);
                                             }
                                         }
                                         
@@ -352,7 +352,7 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
                                                     technic_beam(material=material, large_nozzle=large_nozzle, l=side_length, w=1, h=1);
                                                     
                                                     translate([0, 0, block_height()]) {
-                                                        technic_twist_beam(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                                        technic_twist_beam(material=material, large_nozzle=large_nozzle, w=1, center=side_length-4, left=2, right=2, h_left=1, h_center=1, h_right=1);
                                                     }
                                                 }
                                             }

@@ -317,19 +317,19 @@ module technic_rectangle(material, large_nozzle, l1, l2, l3, w1, w2, w3, text, t
 
     difference() {
         union() {
-            technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=l1, center=l2, right=l3, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+            technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, w_left=1, w_center=1, w_right=1, l_left=l1, l_center=l2, l_right=l3, h_left=h, h_center=h, h_right=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
 
             rotate([0, 0, 90]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=w1, center=w2, right=w3, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, w_left=1, w_center=1, w_right=1, l_left=w1, l_center=w2, l_right=w3, h_left=h, h_center=h, h_right=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
 
             translate([0, block_width(ww-1), 0]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=l1, center=l2, right=l3, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, w_left=1, w_center=1, w_right=1, l_left=l1, l_center=l2, l_right=l3, h_left=h, h_center=h, h_right=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
 
             rotate([0, 0, 90]) {
                 translate([0, -block_width(ll-1), 0]) {
-                    technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=w1, center=w2, right=w3, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                    technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, w_left=1, w_center=1, w_right=1, l_left=w1, l_center=w2, l_right=w3, h_left=h, h_center=h, h_right=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                 }
             }
         }
