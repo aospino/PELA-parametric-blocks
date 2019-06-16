@@ -92,9 +92,9 @@ ___
 
 ___
 
-[![PELA Technic Beam](/technic-beam/PELA-technic-twist-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl)
+[![PELA Technic Twist Beam](/technic-beam/PELA-technic-twist-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl)
 
-[PELA Technic Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl) A technic beam with a center section of holes rotated 90 degrees.
+[PELA Technic Twist Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl) A technic beam with a center section of holes rotated 90 degrees.
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 ___
 
-[![PELA Raspberry Pi Zero W Technic Mount](/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl)
+[![PELA Raspberry Pi Zero W Technic Mount](/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl)
 
 [PELA Raspberry Pi Zero W Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl) A Raspberry Pi Zero W holder.
 
