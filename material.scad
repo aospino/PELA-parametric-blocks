@@ -87,6 +87,9 @@ abs_m = ["ABS", false, -0.18, 0.16, 0.14];
 // ABS, large nozzle (>= 0.5mm) calibration settings
 abs_lm = ["ABS", false, -0.06, 0.0, 0.08];
 
+//TODO Polycarboniate large test technics- abs_lm = ["ABS", false, -0.06, 0.16, 0.14];
+
+
 pet = 2; // Innoflil3D rPET
 // PET, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
